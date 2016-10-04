@@ -5,12 +5,15 @@
   <meta charset="utf-8" />
   <title>Checker</title>
   <style type="text/css">
-    table {
-      border: 0px solid black;
-      border-spacing: 0;
+    .task2_1 {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-size: 5px;
     }
-    td {
-      border: 1px solid black;
+
+    .task2_1 li:nth-child(-n+3) {
+      font-size: 12px;
     }
   </style>
 </head>
@@ -20,7 +23,7 @@
   <script type='text/javascript' src="index.js"></script>
   <script type='text/javascript'>
     var container = document.getElementById('container');
-    container.innerHTML = main(3*3*3*3*3);
+    container.innerHTML = main(5);
   </script>
 </body>
 </html>

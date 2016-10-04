@@ -44,4 +44,4 @@ function main(sum) {
   return createList(result.join(''));
 }
 
-//main(3, { width: 250, cHeight: 20 });
+main(5);
