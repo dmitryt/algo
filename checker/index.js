@@ -1,47 +1,51 @@
-function createList(content) {
-  return `<ul class="task2_1">${content}</ul>`;
+var COMMANDS = [
+  'Спартак',
+  'Зенит',
+  'Реал Мадрид',
+  'ЦСКА',
+  'Манчестер Юнайтед',
+  'Барселона',
+  'Арсенал',
+  'Челси',
+  'Ливерпуль',
+  'Локомотив',
+  'Ювентус',
+  'Милан',
+  'Бавария',
+  'Динамо Москва',
+  'Боруссия Дортмунд',
+  'Рубин'
+];
+
+var games = {};
+
+function selectCommand() {
+  return Math.ceil(Math.random() * COMMANDS.length);
 }
 
-function createListItem(content) {
-  return `<li>${content}</li>`;
-}
-
-var OPERATIONS = {
-  '+': add,
-  '*': mul,
-  '-': sub,
-  '/': div,
-};
-
-function add(a, b) {
-  return a + b;
-}
-
-function mul(a, b) {
-  return a * b;
-}
-
-function sub(a, b) {
-  return a - b;
-}
-
-function div(a, b) {
-  return a / b;
-}
-
-function main(sum) {
-  var result = [];
-  Object.keys(OPERATIONS).forEach(function(sign) {
-    var operation = OPERATIONS[sign];
-    for (var fn = 0; fn < 10; fn++) {
-      for (var sn = 0; sn < 10; sn++) {
-        if (operation(fn, sn) === sum) {
-          result.push(createListItem([fn, sn].join(sign)));
-        }
-      }
+function generateGame() {
+  var command1 = selectCommand();
+  var command2 = selectCommand();
+  if (!Array.isArray(games[command1])) {
+    games[command1] = [];
+  } else {
+    while (games[command1].length !== COMMANDS.length - 1) {
+      command1 = selectCommand();
     }
-  });
-  return createList(result.join(''));
+  }
+  while (games[command1].indexOf(command2) === -1) {
+    command2 = selectCommand();
+  }
+  
 }
 
-//main(3, { width: 250, cHeight: 20 });
+function generateSearch() {
+
+}
+
+function main() {
+  var COUNT_OF_GAMES = 150;
+  for (var i = 0; i < COUNT_OF_GAMES; i++) {
+    games.push(generateGame());
+  }
+}
