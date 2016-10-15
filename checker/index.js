@@ -1,51 +1,49 @@
-var COMMANDS = [
-  'Спартак',
-  'Зенит',
-  'Реал Мадрид',
-  'ЦСКА',
-  'Манчестер Юнайтед',
-  'Барселона',
-  'Арсенал',
-  'Челси',
-  'Ливерпуль',
-  'Локомотив',
-  'Ювентус',
-  'Милан',
-  'Бавария',
-  'Динамо Москва',
-  'Боруссия Дортмунд',
-  'Рубин'
-];
-
-var games = {};
-
-function selectCommand() {
-  return Math.ceil(Math.random() * COMMANDS.length);
+function createTable(content) {
+  return '<table style="border-collapse: collapse; table-layout: fixed">$content</table>'
+            .replace('$content', content);
 }
 
-function generateGame() {
-  var command1 = selectCommand();
-  var command2 = selectCommand();
-  if (!Array.isArray(games[command1])) {
-    games[command1] = [];
-  } else {
-    while (games[command1].length !== COMMANDS.length - 1) {
-      command1 = selectCommand();
+function createTableRow(content) {
+  return '<tr>$content</tr>'.replace('$content', content);
+}
+
+function createTableCell(color, args) {
+  return '<td style="background-color: $color" width="$cSize" height="$cSize"></td>'
+            .replace(/\$color/g, color)
+            .replace(/\$cSize/g, args.cSize);
+}
+
+function getDelta(i, j, radius) {
+  return i*i + j*j - radius*radius;
+}
+
+function main(n, args) {
+  var rows = [];
+  var cells = [];
+  var r = Math.floor(n / 2);
+  var delta = null;
+  var color = null;
+
+  for (var i = -r; i <= r; i++) {
+    cells = [];
+    for (var j = -r; j <= r; j++) {
+      delta = getDelta(i, j, r);
+      if (delta > 0) {
+        color = 'white';
+      } else if (delta < 0) {
+        if (getDelta(i - 1, j, r) > 0 || getDelta(i, j - 1, r) > 0 || getDelta(i + 1, j, r) > 0 || getDelta(i, j + 1, r) > 0) {
+          color = 'black';
+        } else {
+          color = 'blue';
+        }
+      } else {
+        color = 'black';
+      }
+      cells.push(createTableCell(color, args));
     }
+    rows.push(createTableRow(cells.join('')));
   }
-  while (games[command1].indexOf(command2) === -1) {
-    command2 = selectCommand();
-  }
-  
+  return createTable(rows.join(''), args);
 }
 
-function generateSearch() {
-
-}
-
-function main() {
-  var COUNT_OF_GAMES = 150;
-  for (var i = 0; i < COUNT_OF_GAMES; i++) {
-    games.push(generateGame());
-  }
-}
+// main(3, { cSize: 50 });

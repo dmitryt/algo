@@ -28,6 +28,8 @@
   <link rel="import" href="./src/lesson1/task4/5.html" data-target="lesson1/task4_5">
 
   <link rel="import" href="./src/lesson2/task1/1.html" data-target="lesson2/task1_1">
+  <link rel="import" href="./src/lesson2/task1/2.html" data-target="lesson2/task1_2">
+  <link rel="import" href="./src/lesson2/task1/3.html" data-target="lesson2/task1_3">
   <title>My Progress</title>
   <style type="text/css">
     table {
@@ -49,11 +51,11 @@
       margin: 0;
       padding: 0;
       list-style-type: none;
-      font-size: 5px;
-    }
-
-    .task2_1 li:nth-child(-n+3) {
-      font-size: 12px;
+      max-height: 150px;
+      overflow: auto;
+      display: inline-block;
+      font-size: 10px;
+      width: 100px;
     }
   </style>
 </head>
@@ -64,9 +66,13 @@
   <table>
     <tr>
       <td id="lesson2/task1_1"></td>
+      <td id="lesson2/task1_2"></td>
+      <td id="lesson2/task1_3"></td>
     </tr>
     <tr align="center">
-      <td><a href="./src/lesson2/task1/script1.js">30min</a></td>
+      <td><a href="./src/lesson2/task1/script1.js">50min</a></td>
+      <td><a href="./src/lesson2/task1/script2.js">5min</a></td>
+      <td><a href="./src/lesson2/task1/script3.js">5min</a></td>
     </tr>
   </table>
   <table>
@@ -86,7 +92,7 @@
       <td><a href="./src/lesson1/task4/script5.js">2min</a></td>
     </tr>
   </table>
-  <table>
+  <table width="1800px">
     <tr>
       <td id="lesson1/task3_1"></td>
       <td id="lesson1/task3_2"></td>

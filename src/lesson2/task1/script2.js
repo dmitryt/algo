@@ -30,4 +30,4 @@ function main(n, sum) {
   return createList(result.join(''));
 }
 
-main(2, 5);
+main(3, 5);

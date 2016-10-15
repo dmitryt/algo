@@ -46,4 +46,4 @@ function main(n, args) {
   return createTable(rows.join(''), args);
 }
 
-main(13, { cSize: 50 });
+main(13, { cSize: 21 });
